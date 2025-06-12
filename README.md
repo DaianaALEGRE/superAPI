@@ -78,6 +78,7 @@ Diagrama de flujo
 ***
 
 ```mermaid
+
 graph TD
     Client([Client])
 
@@ -109,4 +110,4 @@ graph TD
     ANALYSIS -- Valid --> CONTINUE
     CONTINUE --> CONNECT
     CONNECT --> DB
-    ```
+ ```
