@@ -90,7 +90,7 @@ graph TD
     ANALYSIS{{Data analysis}}
     ERROR[Return error]
     CONTINUE[Continue]
-    CONNECT[Conect to mongodb]
+    CONNECT[Connect to mongodb]
     DB[(MongoDB)]
 
     Client --> GET_ALL
@@ -108,5 +108,5 @@ graph TD
     ANALYSIS -- Error --> ERROR
     ANALYSIS -- Valid --> CONTINUE
     CONTINUE --> CONNECT
-    CONNECT --> DB
+    CONNECT --> DB
     ```
