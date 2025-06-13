@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Producto = require('../models/Producto');
-
+const mongoose = require('mongoose');
 // GET todos los productos
 router.get('/', async (req, res) => {
   try {
@@ -36,13 +36,23 @@ router.post('/', async (req, res) => {
 
 // PUT actualizar producto por ID
 router.put('/:id', async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: 'Formato de ID incorrecto' });
+  }
+
   try {
     const productoActualizado = await Producto.findByIdAndUpdate(
-      req.params.id,
+      id,
       req.body,
       { new: true, runValidators: true }
     );
-    if (!productoActualizado) return res.status(404).json({ error: 'Producto no encontrado' });
+
+    if (!productoActualizado) {
+      return res.status(404).json({ error: 'Producto no encontrado' });
+    }
+
     res.json(productoActualizado);
   } catch (err) {
     res.status(400).json({ error: err.message });
