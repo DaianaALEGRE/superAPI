@@ -4,15 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Supermercado</title>
-  <style>
-    body { font-family: sans-serif; margin: 2rem; }
-    form, .producto { margin-bottom: 1rem; }
-    input { margin-right: 0.5rem; }
-    .producto { border: 1px solid #ccc; padding: 1rem; border-radius: 5px; }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-
+<div id="header-sticky">
   <h1>Supermercado - CRUD</h1>
 
   <form id="formulario">
@@ -22,7 +18,7 @@
     <input type="text" id="categoria" placeholder="Categoría" required />
     <button type="submit">Agregar</button>
   </form>
-
+</div>
   <h2>Productos</h2>
   <div id="lista-productos"></div>
 
@@ -42,16 +38,34 @@
         div.innerHTML = `
           <strong>${p.nombre}</strong> - $${p.precio} <br>
           Código: ${p.codigo} | Categoría: ${p.categoria} <br>
-          <button onclick="eliminarProducto('${p._id}')">Eliminar</button>
+          <button onclick="confirmarEliminar('${p._id}')">Eliminar</button>
         `;
         lista.appendChild(div);
       });
     }
 
-    async function eliminarProducto(id) {
-      await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
-      cargarProductos();
+    async function eliminarProductoConfirmado(id) {
+  await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+  cargarProductos();
+}
+
+function confirmarEliminar(id) {
+  Swal.fire({
+    title: '¿Estás seguro?',
+    text: "¡No podrás revertir esta acción!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Eliminar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      eliminarProductoConfirmado(id);
+      Swal.fire('Eliminado!', 'El producto fue eliminado.', 'success');
     }
+  });
+}
 
     document.getElementById('formulario').addEventListener('submit', async e => {
       e.preventDefault();

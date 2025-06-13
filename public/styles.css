@@ -1,0 +1,107 @@
+/* Fondo degradado oscuro y centrado */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: linear-gradient(to bottom right, #111, #333);
+  color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+#header-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 1rem 2rem;
+  backdrop-filter: blur(8px) saturate(180%);
+  background: rgba(17, 17, 17, 0.123);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+}
+
+/* Título */
+h1 {
+  margin-bottom: 20px;
+}
+
+/* Formulario */
+form {
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Inputs con buen contraste */
+input[type="number"],
+input[type="text"] {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #000;
+  font-size: 16px;
+  outline: none;
+  flex: 1 1 120px;
+  min-width: 120px;
+}
+
+/* Placeholder gris suave */
+input::placeholder {
+  color: #777;
+}
+
+/* Botón */
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #0a74da;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  flex: 1 1 100px;
+  min-width: 100px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #064a8a;
+}
+
+/* Lista de productos */
+#lista-productos {
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Cada producto */
+.producto {
+  background-color: #222;
+  border: 1px solid #555;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  color: #f5f5f5;
+}
+
+/* Botón eliminar dentro del producto */
+.producto button {
+  background-color: #b00020;
+  margin-top: 0.5rem;
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+.producto button:hover {
+  background-color: #7a0014;
+}
